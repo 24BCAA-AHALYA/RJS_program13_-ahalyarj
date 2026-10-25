@@ -1,108 +1,67 @@
 import React, { useState } from "react";
 
-
 function App() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [feedback, setFeedback] = useState("");
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for your feedback!");
+  };
 
-        setError("");
-        setSuccess("");
+  return (
+    <div>
+      <h1>Student Feedback Form</h1>
 
-        if (name.trim() === "") {
-            setError("Please enter your name");
-            return;
-        }
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <br />
+        <input
+          id="name"
+          type="text"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-        if (email.trim() === "") {
-            setError("Please enter your email");
-            return;
-        }
+        <br />
+        <br />
 
-        if (!email.includes("@")) {
-            setError("Please enter a valid email");
-            return;
-        }
+        <label htmlFor="email">Email:</label>
+        <br />
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        if (feedback.trim() === "") {
-            setError("Please enter your feedback");
-            return;
-        }
+        <br />
+        <br />
 
-        setSuccess("Feedback submitted successfully!");
+        <label htmlFor="feedback">Feedback:</label>
+        <br />
+        <textarea
+          id="feedback"
+          placeholder="Enter your feedback"
+          rows="6"
+          cols="24"
+          value={feedback}
+          onChange={(e) => setFeedback(e.target.value)}
+          required
+        />
 
-        setName("");
-        setEmail("");
-        setFeedback("");
-    };
+        <br />
+        <br />
 
-    return (
-        <div className="container">
-            <h1>Student Feedback Form</h1>
-
-            <form onSubmit={handleSubmit}>
-
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <br />
-
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        placeholder="Enter your name"
-                    />
-                </div>
-
-                <br />
-
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <br />
-
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        placeholder="Enter your email"
-                    />
-                </div>
-
-                <br />
-
-                <div>
-                    <label htmlFor="feedback">Feedback:</label>
-                    <br />
-
-                    <textarea
-                        id="feedback"
-                        rows="5"
-                        value={feedback}
-                        onChange={(event) => setFeedback(event.target.value)}
-                        placeholder="Enter your feedback"
-                    ></textarea>
-                </div>
-
-                <br />
-
-                {error && <p>{error}</p>}
-
-                {success && <p>{success}</p>}
-
-                <button type="submit">
-                    Submit Feedback
-                </button>
-
-            </form>
-        </div>
-    );
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  );
 }
 
 export default App;
